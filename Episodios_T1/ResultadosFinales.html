@@ -1,21 +1,5 @@
-{% extends "global/Page.html" %}
+{% extends "_templates/global/Page.html" %}
 {% load static otree %}
-
-{% block styles %}
-<link href="{% static 'custom.css' %}" rel="stylesheet" />
-<style>
-    .wrapper.instructions {
-        text-align: center; /* Centra el contenido */
-    }
-    .wrapper.instructions ul {
-        padding: 0;
-    }
-    .wrapper.instructions img {
-        margin-top: 20px; /* Espacio por encima de la imagen */
-        margin-bottom: 20px; /* Espacio debajo de la imagen */
-    }
-</style>
-{% endblock %}
 
 {% block content %}
 <div id="pageContent">
