@@ -1,0 +1,107 @@
+/* General Styles */
+body {
+    font-size: 1rem; /* Standard font size */
+    line-height: 1.6; /* Improved readability with more space between lines */
+    background: #f7f7f7; /* Optional: Sets a background color for the body */
+}
+
+/* Wrapper Styles */
+.wrapper {
+    margin: 2vh auto; /* Vertical margin based on viewport height */
+    padding: 1em; /* Responsive padding */
+    background: rgba(255,255,245,0.8); /* Semi-transparent background for the wrapper */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+    border-radius: 5px;
+    width: 90%; /* Percentage width for responsiveness */
+    max-width: 1200px; /* Maximum width to prevent the wrapper from becoming too wide */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* Instructions Styles */
+.instructions {
+    text-align: justify; /* Justify text for better alignment */
+    padding: 1em; /* Responsive padding */
+    margin-bottom: 20px; /* Space below the instructions section */
+    background: #fff; /* Solid background color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 100%; /* Full width on larger screens */
+}
+
+/* Table Styles */
+.table {
+    width: 100%; /* Full width tables */
+    margin-bottom: 20px; /* Space below the table */
+    table-layout: auto; /* Auto layout for table based on content */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+
+.table th, .table td {
+    text-align: center; /* Center align text in table headers and cells */
+    vertical-align: middle; /* Vertically center content in table cells */
+    padding: 0.5em; /* Responsive table cell padding */
+}
+
+/* Table Cell Styles */
+.icon-cell {
+    font-size: 48px; /* Icon size for larger displays */
+}
+
+.number-cell {
+    font-weight: bold; /* Bold text for numbers */
+}
+
+.radio-cell {
+    padding: 0.5em; /* Responsive padding for radio buttons */
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 767px) {
+    .wrapper,
+    .instructions {
+        width: 95%; /* Slightly narrower on smaller screens */
+    }
+
+    .icon-cell {
+        font-size: 36px; /* Smaller icon size on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper,
+    .instructions {
+        width: 100%; /* Full width on very small screens */
+    }
+
+    .table th, .table td {
+        font-size: 12px; /* Smaller font size in tables to prevent text overlap */
+    }
+}
+
+/* Button Styles */
+.otree-btn-next {
+    margin: 20px auto;
+    display: block;
+}
+
+.btn-primary, .btn-success[disabled] {
+    margin-bottom: 10px;
+    opacity: 1;
+}
+
+/* Progress Bar Style */
+.progress {
+    height: 20px; /* Taller progress bars for visibility */
+    margin-bottom: 20px; /* Space below progress bars */
+    background-color: rgba(43, 102, 154, 0.2); /* Light blue background color */
+    background-image: linear-gradient(to bottom, rgba(43, 102, 154, 0.1) 0, rgba(43, 102, 154, 0.6) 100%);
+}
+
+/* Error Message Style */
+.otree-form-errors:after {
+    visibility: visible;
+    content: "Please answer the question";
+    position: absolute;
+    top: 0;
+    left: 0;
+}

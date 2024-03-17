@@ -1,60 +1,7 @@
-{% extends "global/Page.html" %}
+{% extends "_templates/global/Page.html" %}
 {% load staticfiles otree %}
 {% load i18n %}
 
-{# ****************************************************************************************************************** #}
-{# *** STYLES *** #}
-{# ****************************************************************************************************************** #}
-{% block styles %}
-    <link href="{% static 'custom.css' %}" rel="stylesheet"/>
-<style>
-    .instructions {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        height: 100vh; /* Utiliza el 100% de la altura de la ventana */
-        padding: 20px;
-    }
-    .container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 15px;
-        width: 100%; /* Ajusta este valor según necesites */
-        max-width: 600px; /* Ajusta este valor según necesites */
-    }
-    .download-link {
-        margin-top: 20px;
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
-        padding: .5rem 1rem;
-        font-size: 1.25rem;
-        line-height: 1.5;
-        border-radius: .3rem;
-        text-decoration: none;
-    }
-    .download-link:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
-    .text-center {
-    text-align: center;
-}
-
-.ticket-container {
-    margin: auto;
-}
-
-.wrapper.instructions {
-    padding: 20px;
-}
-
-</style>
-{% endblock %}
-
-{# ****************************************************************************************************************** #}
 
 
 {# ****************************************************************************************************************** #}
