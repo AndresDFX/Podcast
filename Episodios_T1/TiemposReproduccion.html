@@ -1,0 +1,234 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    {% if mostrar_capitulos %}
+        Episodio {{ num_pagina }}: "{{ nombre_actual }}"
+    {% else %}
+        No hay Episodio
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper instructions">
+        {% if mostrar_capitulos %}
+            <p align="justify">
+                <b>¡Hola!</b>
+                <br>
+                <br> No te pierdas el <b>Episodio {{ num_pagina }}: "{{ nombre_actual }}"</b> de nuestra radionovela <b>"Volver a Empezar"</b>
+            </p>
+            <p align="center">
+                <br>Porfa, <b>escucha con atención para que puedas responder las preguntas:</b>
+            </p>
+                <audio controls preload="auto" id="audio{{ num_pagina }}" ontimeupdate="registrarTiempo('audio{{ num_pagina }}')" style="display: block; margin: 0 auto;">
+                    <source src="{{ static ruta_ultimo_audio }}" type="audio/mpeg">
+                </audio>
+                <br>
+            <p align="justify">
+                Sólo por escuchar el audio completo ya tendrás una <b>boleta</b> para el primer <b> sorteo del 8 de febrero</b>.
+                <br>Pero eso no es todo, por cada pregunta que respondas bien, te daremos una boleta adicional.
+                <br>
+                <br>
+            </p>
+    </div>
+    <div class="wrapper instructions">
+            {% if capitulos_y_rutas %}
+            <p align="justify">En caso de que quieras volver a escuchar alguno de los capítulos anteriores:</p>
+            <ul>
+                <b>{% for nombre, ruta_audio in capitulos_y_rutas %}</b>
+                <li>
+                    Capitulo {{ forloop.counter }}: "{{ nombre }}"
+                    <br>
+                    <audio controls preload="metadata" id="audio{{ forloop.counter }}" ontimeupdate="registrarTiempo('audio{{ forloop.counter }}')">
+                        <source src="{{ static ruta_audio }}" type="audio/mpeg">
+                    </audio>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <p align="center">
+                <br>Oprime el botón "siguiente" para continuar con los siguientes capítulos y las preguntas,
+                <br>Sólo te tomará unos minutos.
+            </p>
+    </div>
+    <input type="hidden" name="tiempos_reproduccion_json" id="tiemposReproduccionInput"/>
+    <input type="hidden" name="timeSpent" id="timeSpent"/>
+    {{ formfield_errors 'tiempos_reproduccion_json' }}
+    {% next_button %}
+    </div>
+
+
+    {% else %}
+
+        <p>Los siguientes capítulos estarán disponibles el próximo jueves. ¡Vuelve entonces para seguir disfrutando de la radionovela!</p>
+    {% endif %}
+
+
+    <div id="modalNumeroAleatorio" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="position: relative; margin: 10% auto; padding: 20px; width: 50%; text-align: center; background-color: white; border-radius: 15px;">
+            <h2 style="font-weight: bold;">¡Muchas gracias por escucharnos!</h2>
+            <p>Por escuchar este capítulo, has ganado el siguiente boleto de lotería:</p>
+            <div style="position: relative; display: inline-block;">
+                <img id="ticketImage" src="{% static 'images/Segundo_Sorteo.png' %}" alt="Golden Ticket" style="width: 100%; margin-top: 20px;">
+                <span id="numeroAleatorio" style="position: absolute; left: 75%; top: 18%; transform: translate(-50%, -50%); font-size: 2em; color: white;"></span>
+            </div>
+            <a href="#" id="downloadBtn" style="margin-top: 20px;">Descargar Boleta</a>
+            <button id="botonAceptarModal" onclick="manejarAceptar()" style="margin-top: 20px; display: inline-block; width: auto; padding: 10px 20px; font-size: 1em;">Aceptar</button>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    function obtenerIdentificadorUnico() {
+        var urlParts = window.location.pathname.split('/');
+        var indexP = urlParts.indexOf('p');
+        return indexP >= 0 ? urlParts[indexP + 1] : 'default';
+    }
+
+    var identificadorUnico = obtenerIdentificadorUnico();
+    var pageTimeElapsed = localStorage.getItem('pageTimeElapsed_' + identificadorUnico) || 0;
+    var pageTimerID = -1;
+    var tiemposReproduccion = {};
+    var audioReproducido = false;
+    var modalAbierto = false;
+
+    function pageTick() {
+        pageTimeElapsed++;
+        document.getElementById("timeSpent").value = pageTimeElapsed;
+        localStorage.setItem('pageTimeElapsed_' + identificadorUnico, pageTimeElapsed);
+    }
+
+    function registrarTiempo(audioId) {
+        var audio = document.getElementById(audioId);
+        if (audio && audio.currentTime > 0) {
+            tiemposReproduccion[audioId] = parseFloat(audio.currentTime.toFixed(2));
+            if (audioId === "audio" + {{ num_pagina }}) {
+                audioReproducido = true;
+                localStorage.setItem('audioReproducido_' + identificadorUnico, 'true');
+            }
+        }
+    }
+
+    function enviarTiempos() {
+        document.getElementById("tiemposReproduccionInput").value = JSON.stringify(tiemposReproduccion);
+    }
+
+    function verificarReproduccion() {
+        if (!audioReproducido) {
+            alert("Para continuar deberá escuchar el audio principal de la página");
+            return false;
+        }
+        return true;
+    }
+
+    function mostrarModal(numero) {
+        document.getElementById('numeroAleatorio').textContent = numero;
+        document.getElementById('modalNumeroAleatorio').style.display = 'block';
+        modalAbierto = true;
+        localStorage.setItem('modalAbierto_' + identificadorUnico, 'true');
+        prepararEnlaceDescarga(numero);
+    }
+
+    function prepararEnlaceDescarga(numeroAleatorio) {
+        var enlaceDescarga = document.getElementById('enlaceDescarga');
+        enlaceDescarga.addEventListener('click', function(event) {
+            event.preventDefault();
+            descargarImagen(numeroAleatorio);
+        });
+    }
+
+    function descargarImagen(numeroAleatorio) {
+        var ticketImage = document.getElementById('ticketImageModal'); // Asegúrate de que este ID corresponda al de tu imagen en el modal
+        var canvas = document.createElement('canvas');
+        canvas.width = ticketImage.naturalWidth;
+        canvas.height = ticketImage.naturalHeight;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(ticketImage, 0, 0);
+        ctx.font = '200px Arial';
+        ctx.fillStyle = 'white';
+        ctx.fillText(numeroAleatorio, canvas.width * 0.70, canvas.height * 0.17);
+
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        var link = document.createElement('a');
+        link.href = image;
+        link.download = 'BoletoSorteo_' + numeroAleatorio + '.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+
+    function cerrarModal() {
+        document.getElementById('modalNumeroAleatorio').style.display = 'none';
+        modalAbierto = false;
+        localStorage.setItem('modalAbierto_' + identificadorUnico, 'false');
+    }
+
+    function avanzarAPaginaSiguiente() {
+        cerrarModal();
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = window.location.href;
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function liveRecv(data) {
+        if (data) {
+            localStorage.setItem('numeroAleatorio_' + identificadorUnico, data);
+            mostrarModal(data);
+        }
+    }
+
+    window.onload = function() {
+        var audios = document.getElementsByTagName('audio');
+        for (var i = 0; i < audios.length; i++) {
+            var audioId = audios[i].id;
+            tiemposReproduccion[audioId] = 0;
+            audios[i].ontimeupdate = function() { registrarTiempo(this.id); };
+        }
+
+        if (pageTimerID === -1) {
+            pageTimerID = setInterval(pageTick, 1000);
+        }
+
+        var nextButton = document.querySelector(".otree-btn-next");
+        var botonAceptarModal = document.getElementById('botonAceptarModal');
+
+        if (botonAceptarModal) {
+            botonAceptarModal.onclick = avanzarAPaginaSiguiente;
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', function(event) {
+                if (!verificarReproduccion()) {
+                    event.preventDefault();
+                } else if (!modalAbierto) {
+                    enviarTiempos();
+                    liveSend({});
+                    event.preventDefault();
+                }
+            });
+        }
+
+        // Abrir el modal si ya se había mostrado antes
+        if (localStorage.getItem('modalAbierto_' + identificadorUnico) === 'true') {
+            var numeroAleatorioGuardado = localStorage.getItem('numeroAleatorio_' + identificadorUnico);
+            if (numeroAleatorioGuardado) {
+                mostrarModal(numeroAleatorioGuardado);
+            }
+        }
+    };
+
+</script>
+{% endblock %}
+
+
+

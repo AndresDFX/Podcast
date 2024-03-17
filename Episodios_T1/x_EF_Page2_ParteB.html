@@ -1,0 +1,176 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Encuesta Final: Parte 2" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <p align ="justify">
+            En esta sección te haremos diferentes preguntas sobre un escenario. 
+            Por favor responde como más te sientas comodo y lo más honestamente posible de acuerdo a lo que piensas.
+            Recuerda que tus respuestas son completamente anónimas y confidenciales.
+        </p>
+        <br>
+        <p align = "justify" >
+            Imagínate a un/una joven <b>como tú</b> que esté administrando un puesto de comidas rápidas en un barrio parecido al tuyo.  
+            Como al negocio le va bien, ha decidido poner un <b>aviso</b> buscando alguien que pueda trabajar en el puesto. 
+            Para aplicar al trabajo, se requiere la presentación de varios documentos y el llenado de un formulario. 
+            <b>Ya es jueves y sólo ha llegado una hoja de vida.</b> 
+            <br>
+            <br>
+            La hoja de vida es de Daniel Martínez, nacido en <b>Bogotá, Colombia</b>, el 15 de agosto de 2002. 
+            Daniel es <b>hijo único</b> y vive con su madre a quien intenta ayudar económicamente. 
+            Actualmente, estudia en el <b>SENA</b>, y menciona ser activo, recursivo y con excelente capacidad de atender al público.  
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        En una escala de 0 a 10, donde <b>0 es NADA PROBABLE y 10 MUY PROBABLE.</b> 
+        <br>
+        <br><b>¿Qué tan probable crees que el administrador o la administradora del negocio…</b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>se tome la molestia de revisar la hoja de vida ?</td>
+                    {% for choice in form.EF_B1_revisar_hoja %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td> llame para una entrevista a esa persona?</td>
+                    {% for choice in form.EF_B2_llame_entrevista %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>contrate a la persona interesada?</td>
+                    {% for choice in form.EF_B3_contrate %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>espere a recibir otras hojas de vida?</td>
+                    {% for choice in form.EF_B4_espere_otras_hojas %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        <b>En una escala similar; ¿Qué tan probable  crees que esa persona…</b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>tenga los documentos que le piden? </td>
+                    {% for choice in form.EF_B5_tenga_documentos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td> pueda conseguir la documentación que falta rápidamente?</td>
+                    {% for choice in form.EF_B6_consiga_documentacion %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        En una escala similar, si esa persona pide ayuda a alguien en la calle para rellenar los documentos 
+        <b>¿Qué tan probable crees que sea tratada…. </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>de forma amable? </td>
+                    {% for choice in form.EF_B7_trato_amable %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td> con indiferencia, sin hacerle caso??</td>
+                    {% for choice in form.EF_B8_trato_indiferencia %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td> de manera poco respetuosa? </td>
+                    {% for choice in form.EF_B9_trato_poco_respetosa %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+
+
+    {% next_button %}
+
+{{ endblock }}

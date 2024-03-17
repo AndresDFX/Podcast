@@ -1,0 +1,227 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+<style>
+    .do-not-show {
+        display: none;
+    }
+</style>
+
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Parte 2" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+    
+    <div class="wrapper instructions">
+        En una escala de 0 a 10, donde <b>0 es “Nada contento, no me gustaría nada</b> y <b>10 es “Muy contento, me encantaría”</b> 
+        <br>
+        <br><b>¿Cuán de contento estarías en tener… </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>1. Vecinos/as Españoles?</td>
+                    {% for choice in form.ES_F10_vecinos_españoles %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>2. Vecinos/as Venezolanos?</td>
+                    {% for choice in form.ES_F11_vecinos_venezolanos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>3. Vecinos/as Norteamericanos?</td>
+                    {% for choice in form.ES_F12_vecinos_norteamericanos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>4. Vecinos/as Chilenos?</td>
+                    {% for choice in form.ES_F13_vecinos_chilenos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+    <div class="wrapper instructions">
+        <b>De cada 10 personas que están respondiendo esta encuesta, ¿cuántos crees que...</b> 
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>5. … estarían contentos si su hermana les dice que su pareja sentimental es un Venezolano?</td>
+                    {% for choice in form.ES_F14_pareja_venezolana %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <td>6. …han realizado donaciones a organizaciones que promuevan el bienestar de los migrantes venezolanos en el último mes?</td>
+                {% for choice in form.ES_F15_donaciones %}
+                    <td>{% choice %}</td>
+                {% endfor %}
+                <tr>
+                    <td>7. …tienen amigos y amigas de Venezuela?</td>
+                    {% for choice in form.ES_F16_amigos_venezuela %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+    <div class="wrapper instructions">
+        <br><b>En una escala de 0 al 10, donde 0 es Ninguno/Muy Pocos y 10 Todos, en tu opinión ¿Cuántos colombianos crees que…?</b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>8. …deberían de  adoptarse controles de entrada al país más estrictos para migrantes?</td>
+                    {% for choice in form.ES_F17_exp_col_controles_migrantes %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>9. …si los trabajos son escasos, los empleadores deben dar prioridad a los  colombianos sobre los migrantes?</td>
+                    {% for choice in form.ES_F18_exp_col_prioridad_colombianos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+
+
+    <div class="wrapper instructions">
+        <b>En una escala de 0 a 10, donde 0 es Totalmente en desacuerdo y 10 es Totalmente de acuerdo, en tu opinión, 
+        los migrantes venezolanos residentes en Bogotá…</b> 
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>10. tienen la misma educación que los colombianos.</td>
+                    {% for choice in form.ES_F19_ven_edu_colombianos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>11. son tratados con el debido respeto por la mayoría</td>
+                    {% for choice in form.ES_F20_ven_respeto %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>12. son contratados por las empresas igual que los colombianos.  </td>
+                    {% for choice in form.ES_F21_ven_contratados %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>13. tienen acceso a educación, salud y trabajo igual que los colombianos.</td>
+                    {% for choice in form.ES_F22_ven_acceso_servicios %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>14. son serios y juiciosos en el trabajo</td>
+                    {% for choice in form.ES_F23_ven_juiciosos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>15. son menos ladrones que los colombianos</td>
+                    {% for choice in form.ES_F24_ven_ladrones %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br> {{ formfield 'ES_F25_campaña' }}        
+            <br> {{ formfield 'ES_F26_donaciones' }}      
+              
+            
+        </p>
+    </div>
+
+    {% next_button %}
+
+{{ endblock }}
+
+
+
+            
+            
+            
+            

@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+<style>
+    .wrapper.instructions {
+        text-align: center; /* Centra el contenido */
+    }
+    .wrapper.instructions ul {
+        padding: 0;
+    }
+    .wrapper.instructions img {
+        margin-top: 20px; /* Espacio por encima de la imagen */
+        margin-bottom: 20px; /* Espacio debajo de la imagen */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="pageContent">
+    <div class="wrapper instructions" style="text-align: center;">
+        <h1>Felicidades</h1>    
+        <p>Por escuchar los episodios y contestar la encuesta has obtenido {{ numeros_aleatorios|length }} boletos</p>
+        <p>¡Recuerda que los boletos te sriven para  participar en el tercer sorteo del 3 de Mayo!</p>
+   
+        <p>¡Ya tienes {{ numeros_aleatorios|length }} boletas para participar en el tercer sorteo del 3 de Mayo!</p>
+        <p>Los números de boletas que has obtenido son los siguientes:</p>
+        <ul id="listaNumerosAleatorios" style="list-style: none;">
+            {% for numero in numeros_aleatorios %}
+            <li>{{ numero }}</li>
+            {% endfor %}
+        </ul>
+        <img src="{% static 'images/Boleto_General.png' %}" alt="Golden Ticket"  style="width: 100%; margin-top: 20px;">
+        <p>Recuerda conectarte el día del sorteo al live de Instagram y Facebook a las 7pm en las cuentas de @podcast_volver_a_empezar   
+        </p>
+        <p>Al oprimir el botón de "Siguiente", te espera la segunda encuesta de nuestro estudio. 
+            <b>La encuesta te tomará aproximadamente 10 minutos.</b>
+            <b>Por completarla podrás recibir un boleto adicional para el tercer sorteo del 3 de mayo.</b>
+
+        <p>¡Mucha suerte!</p>
+        <button id="downloadBtn">Descargar</button>
+    </div>
+</div>
+{% next_button %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    window.onload = function() {
+        var colores = ['red', 'green', 'blue', 'pink', 'orange'];
+        var elementosLi = document.querySelectorAll('#listaNumerosAleatorios li');
+        elementosLi.forEach(function(li, index) {
+            li.style.color = colores[index % colores.length];
+            li.style.fontSize = "24px";
+            li.style.fontWeight = "bold";
+        });
+    };
+</script>
+<script>
+    // Función para descargar la página
+    function downloadPage() {
+        var pageContent = document.getElementById('pageContent').outerHTML; // Obtiene el HTML de la página
+
+        // Crea un objeto Blob (archivo) con el contenido HTML
+        var blob = new Blob([pageContent], { type: 'text/html;charset=utf-8;' });
+
+        // Crea un enlace de descarga
+        var link = document.createElement('a');
+        var url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'mi_pagina.html'); // Nombre del archivo
+        link.style.visibility = 'hidden';
+
+        // Añade el enlace al documento y haz clic en él para iniciar la descarga
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Cuando se hace clic en el botón de descarga
+    document.getElementById('downloadBtn').addEventListener('click', downloadPage);
+</script>
+{% endblock %}

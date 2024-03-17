@@ -1,0 +1,57 @@
+{% block content %}
+
+
+    <div id="pageContent" class="wrapper instructions" style="text-align: center;">
+        <h1>Felicidades!</h1>
+        <p>¡En total, Ya tienes {{ todos_los_numeros|length }} boletas para participar en el segundo sorteo del 26 de Abril!</p>
+        <p>Los números de boletas que has obtenido son los siguientes:</p>
+        <ul id="listaNumerosAleatorios" style="list-style: none;">
+            {% for numero in todos_los_numeros %}
+            <li>{{ numero }}</li>
+            {% endfor %}
+        </ul>
+        <img src="{% static 'images/Boleto_General.png' %}" alt="Golden Ticket"  style="width: 100%; margin-top: 20px;">
+        <br>
+        <br>
+        <p>Recuerda conectarte el día del sorteo al live de instagram y facebook a las 7pm.       
+        </p>
+        <br>
+        <p>El próximo jueves tendrás los siguientes 5 episodios disponibles para escuchar en este mismo link.       
+        </p>
+
+        <p>¡Mucha suerte!</p>
+        
+        <button id="downloadBtn">Descargar</button>
+        <br>
+        <br>
+        {% next_button %}
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var botonDescarga = document.getElementById('downloadBtn');
+        if (botonDescarga) {
+            botonDescarga.addEventListener('click', function(event) {
+                event.stopPropagation(); // Detiene la propagación del evento
+                event.preventDefault(); // Previene el comportamiento predeterminado
+                var element = document.getElementById('pageContent');
+                var opt = {
+                    margin: [0.5, 0.5, 0.5, 0.5], // Margen: arriba, derecha, abajo, izquierda
+                    filename: 'ResultadosParciales1.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 1 }, // Ajusta la escala si es necesario
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+
+                html2pdf().from(element).set(opt).save();
+            });
+        } else {
+            console.error('El botón de descarga no se encontró.');
+        }
+    });
+</script>
+{% endblock %}

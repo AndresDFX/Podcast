@@ -1,0 +1,197 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Parte 2" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <p align ="justify">
+            En esta sección te haremos diferentes preguntas sobre tu nivel de confianza en diferentes grupos. 
+            Por favor, responde lo más honestamente posible de acuerdo a lo que piensas. 
+            Recuerda que tus respuestas son completamente anónimas y confidenciales. 
+        </p>
+        <br>
+        <p align = "justify" >
+            En esta pregunta queremos conocer <b>tu nivel de confianza</b> en las personas que viven en Bogotá. 
+            <ul>
+                <li>Usaremos como punto de referencia tu nivel de confianza en un Bogotano (un Colombiano residente en Bogotá) promedio.
+                    <span class="icocor1" style="font-size: 36px;">&#129490;</span></li><br>
+                <li>Te iremos nombrando grupos, y queremos que nos digas si confías en ese grupo igual que en un Bogotano promedio 
+                    (no hay diferencias en tu confianza), si confías más, o si confías menos en ese grupo que en el Bogotano promedio. </li><br>
+                <li>Te pedimos que uses una escala de -5 a +5. 
+                    Si confías igual en ese grupo que en un Bogotano promedio, utiliza el 0 para indicar que no hay diferencias. </li><br>
+                <li>Si te fías más de ese grupo, usa valores positivos (entre +1 y +5, 
+                    donde +5 significa que confías en ese grupo muchísimo más, +1 sólo un poco más). </li><br>    
+                <li>Si te fías menos de ese grupo, usa valores negativos 
+                    (entre -1 y -5, donde -5 significa que confías en ese grupo muchísimo menos, -1 sólo un poco menos).  </li>    
+    
+                </ul>
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        <p align = "justify" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Miembros de los siguientes grupos</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th>Nivel de Confianza</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> Confias Menos </th>
+                        <th> </th>
+                        <th><span class="icocor1" style="font-size: 36px;">&#129490;</span></td></th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th>Confias Más </th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>-5</th>
+                    <th>-4</th>
+                    <th>-3</th>
+                    <th>-2</th>
+                    <th>-1</th>
+                    <th> 0 </th>
+                    <th>+1</th>
+                    <th>+2</th>
+                    <th>+3</th>
+                    <th>+4</th>
+                    <th>+5</th>
+                </tr>
+                <tr>
+                    <td>Tu familia</td>
+                    {% for choice in form.EF_c1_familia %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Tu barrio o tu comunidad</td>
+                    {% for choice in form.EF_c2_barrio %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Policia Nacional</td>
+                    {% for choice in form.EF_c3_policia %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Jueces y fiscales</td>
+                    {% for choice in form.EF_c4_jueces %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Caleños viviendo en Bogotá</td>
+                    {% for choice in form.EF_c5_caleños %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Españoles viviendo en Bogotá</td>
+                    {% for choice in form.EF_c6_españoles %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Venezolanos viviendo en Bogotá</td>
+                    {% for choice in form.EF_c7_venezolanos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Chilenos viviendo en Bogotá</td>
+                    {% for choice in form.EF_c8_chilenos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Bancos</td>
+                    {% for choice in form.EF_c9_bancos %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Presidencia de Colombia</td>
+                    {% for choice in form.EF_c10_presidente %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Tu iglesia</td>
+                    {% for choice in form.EF_c11_iglesia %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+
+
+
+    {% next_button %}
+
+{{ endblock }}
+
+            
+            
+            
+            

@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Inicio" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <div>
+        <p align ="center">
+            <b><em>¡Vamos a empezar!</em></b>
+            <br>Asegúrate de tener una conexión estable a internet para completar la encuesta sin inconvenientes.
+            <br>Si tienes preguntas o inquietudes, no dudes en llamarnos o escribirnos al WhatsApp XXXXXXXXX 
+            <br>
+        </p>
+
+        <p align = "center">
+            <b>¡Tu ayuda es valiosa y apreciada! 
+                <br>¡Gracias por formar parte de este proyecto!
+            </b>
+    </div>
+
+    {% next_button %}
+
+{% endblock %}
+  

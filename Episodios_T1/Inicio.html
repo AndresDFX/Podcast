@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Inicio" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <div>
+        <p align ="center">
+            <b><em>¡Vamos a empezar!</em></b>
+            <br> A continuación, te presentaremos los episodios de nuestro Podcast <b>"Volver a Empezar"</b>
+        </p>
+        <br><b>Ten en cuenta:</b>
+        <br>
+        <br>
+        <span class="icocor3" style="font-size: 30px;">&#128266;</span>
+        <b>Episodios y Premios</b><br>
+        Cada episodio que escuches es tu boleto de entrada para ganar tarjetas de regalo de $500,000.
+        <br>¡Entre más episodios escuches más oportunidades tendrás para ganar! 
+        <br>
+        <br>
+        <span class="icocor3" style="font-size: 30px;">&#128198;</span>
+        <b>Fechas importantes</b><br>
+        Marca tu calendario, porque cada jueves podrás acceder a los siguientes 5 episodios. 
+        <br><b>¡No te pierdas ni uno!</b> 
+        <br>
+        <br>
+        <table class="horizontal-borders" border="1" align="center">
+            <tr>
+                <th style="width: 30%;">Fechas</th>
+                <th style="width: 30%;">Episodios disponibles</th>
+                <th style="width: 30%;">Fecha de Sorteo</th>
+            </tr>
+            <tr>
+                <td>Hoy (15 de febrero) </td>
+                <td>1 al 5</td>
+                <td>26 de febrero</td>
+            </tr>
+            <tr>
+                <td>22 de febrero</td>
+                <td>6 al 10</td>
+                <td>26 de febrero</td>
+            </tr>  
+        </table>
+        <br>
+        <span class="icocor3" style="font-size: 30px;">&#128279;</span>
+        <b>Acceso continuo</b><br>
+        El enlace estará disponible <b>siempre</b>.
+        <br>Podrás escuchar los episodios en los horarios que desees.
+        <br>¡Vuelve cuando quieras para escuchar los episodios y aumentar tus chances de ganar!  
+        <br>
+        <br>
+    </div>
+    <p align = "center">
+        <br>
+        <b>¡Tu ayuda es valiosa y apreciada! 
+            <br>¡Gracias por formar parte de este proyecto!
+        </b>
+    <br>  
+    <br>Si tienes preguntas o inquietudes, no dudes en llamarnos o escribirnos al WhatsApp 3154489433 
+    <br>
+    {% next_button %}
+
+{% endblock %}

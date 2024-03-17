@@ -1,0 +1,104 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Preguntas 2" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <b>1. ¿Cuál carita expresa mejor tu opinión sobre los 5 episodios que acabas de escuchar? </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128545;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128557;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128580;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128578;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128513;</span></td></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P2P1_emocion_2 %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        <p align = "justify" >
+                            
+            {{ formfield 'P2P2_futbol' }}
+            {{ formfield 'P2P3_hallacas' }}
+            {{ formfield 'P2P4_musica' }}
+        </p>
+    </div>
+
+
+    <div class="wrapper instructions">
+        <b>5. Del 0 al 10, ¿Qué tanto considerás que los alumnos del colegio han acogido/aceptado a Frankie? </b>
+        <br>Contesta en una escala de 0 al 10, donde 0 es “No lo han aceptado para nada” y 10 "Lo han aceptado completamente” 
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P2P5_aceptado %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+            <div class="wrapper instructions">
+                <p align = "justify" >
+                                    
+                    {{ formfield 'P2P6_proximos' }}
+                    {{ formfield 'P2P7_amigos' }}
+                </p>
+            </div>
+
+        </p>
+    </div>
+
+
+
+
+
+    
+{% next_button %}
+
+{{ endblock }}

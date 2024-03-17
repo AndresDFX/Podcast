@@ -1,0 +1,85 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+    <link href="{% static 'custom.css' %}" rel="stylesheet"/>
+{% endblock %}
+{# ****************************************************************************************************************** #}
+
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+<div class="wrapper instructions">
+    <div class="text-center">
+        <h2>¡Muchas gracias por participar!</h2>
+        <p>Tu respuesta ha sido registrada.</p>
+        <p>Por haber completado esta encuesta, has ganado el siguiente boleto de lotería:</p>
+        <div class="ticket-container" style="position: relative; display: inline-block;">
+            <img id="ticketImage" src="{% static 'images/Cuarto_Sorteo.png' %}" alt="Golden Ticket" style="width: auto; max-width: 100%; height: auto;">
+                   <span id="numeroAleatorio" style="position: absolute; left: 75%; top: 15%; transform: translate(-50%, -50%); font-size: 1em; color: white; font-weight: bold;">{{ numero_aleatorio }}</span>
+        </div>
+        <br>
+        <br>
+        <a href="#" id="downloadBtn" class="btn btn-primary">Descargar Boleto</a>
+    </div>
+</div>
+{% next_button %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function downloadImageWithNumber() {
+        var numeroAleatorio = '{{ numero_aleatorio }}';
+        var ticketImage = document.getElementById('ticketImage');
+
+        var canvas = document.createElement('canvas');
+        canvas.width = ticketImage.naturalWidth;
+        canvas.height = ticketImage.naturalHeight;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(ticketImage, 0, 0);
+        ctx.font = '200px Arial'; // Ajuste este valor según sea necesario
+        ctx.fillStyle = 'white';
+       ctx.fillText(numeroAleatorio, canvas.width * 0.70, canvas.height * 0.17);
+
+        canvas.toBlob(function(blob) {
+            var newImg = document.createElement('img'),
+                url = URL.createObjectURL(blob);
+
+            newImg.onload = function() {
+                // no longer need to read the blob so it's revoked
+                URL.revokeObjectURL(url);
+            };
+
+            newImg.src = url;
+            document.body.appendChild(newImg);
+        });
+
+        // Convertir el canvas a imagen y descargarla
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        var link = document.createElement('a');
+        link.href = image;
+        link.download = 'BoletoSorteo_' + numeroAleatorio + '.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Agregamos el listener al cargar la página para evitar múltiples asignaciones
+    window.onload = function() {
+        var downloadLink = document.getElementById('downloadBtn');
+        downloadLink.addEventListener('click', downloadImageWithNumber);
+    };
+</script>
+{% endblock %}
+
+
+

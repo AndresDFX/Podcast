@@ -1,0 +1,83 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Parte E" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <p align ="justify">
+            Volvamos a pensar en la situación de los negocios de comidas rápidas en un barrio de Bogotá <b>como el tuyo</b>, 
+            en el que se atiende a una comunidad local de la cual provienen la <b>mayoría</b> de sus clientes, 
+            de un nivel socioeconómico medio y bajo. En esta comunidad residen personas de diferente procedencia
+        </p>
+        <br>
+        <p align = "justify" >
+            La <b>mayoría</b> de estos puestos contratan a colombianos y venezolanos por igual. 
+            A la <b>mayoría</b> de clientes <b>les da igual</b> ser atendido por colombianos o venezolanos, 
+            y creen que los puestos no deberían discriminar a nadie que quiera trabajar.
+    </div>
+    <div class="wrapper instructions">
+        En una escala de 0 a 10, donde <b>0 es NADA PROBABLE y 10 MUY PROBABLE.</b> 
+        <br><b>¿Qué tan probable es que un migrante venezolano residiendo en ese barrio, acuda a un puesto de comida rápida para...</b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td>…llevar su hoja de vida? </td>
+                    {% for choice in form.E1_llevar_hoja%}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>  …consumir algún producto? </td>
+                    {% for choice in form.E2_consumir_producto %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+            
+
+    {% next_button %}
+
+{{ endblock }}
+
+            
+            
+            
+            

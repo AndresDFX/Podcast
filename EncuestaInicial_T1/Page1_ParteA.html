@@ -1,0 +1,72 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+<style>
+    .do-not-show {
+        display: none;
+    }
+</style>
+{{ endblock }}
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Información General" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+
+<div class="wrapper instructions">
+    <p align = "justify" >
+            
+        <b>Ahora,  conteste las siguientes preguntas. </b>
+        
+        {{ formfield 'A1_estrato' }}
+        {{ formfield 'A2_nivel_educativo' }}
+        {{ formfield 'A3_etnia' }}
+        <div id="etnia2-box" class="do-not-show">
+            {{ formfield "etnia2" }}
+        </div>
+        {{ formfield 'A4_ocupacion' }}
+        {{ formfield 'A5_amigos_migrantes' }}
+        {{ formfield 'A6_candidato_presidente' }}
+      
+    </p>
+</div>
+    {% next_button %}
+
+    
+
+{{ endblock }}
+
+
+{{ block scripts }}
+<script>
+    let etnia2_box = document.getElementById("etnia2-box");
+    let etnia2_select = document.getElementById("etnia2-box");
+    let etnia_select = document.getElementById("id_A3_etnia-6");
+
+    etnia_select.addEventListener("change", function() {
+        if (etnia_select.value == 7) {
+            etnia2_box.classList.remove("do-not-show");
+            etnia2_select.required = true;
+        } else {
+            etnia2_box.classList.add("do-not-show");
+            etnia2_select.required = false;
+        }
+    });
+</script> 
+{{ endblock }}

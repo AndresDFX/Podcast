@@ -1,0 +1,115 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Encuesta Final" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <b>1. ¿Cuál carita expresa mejor tu opinión sobre los 5 episodios que acabas de escuchar? </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128545;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128557;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128580;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128578;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128513;</span></td></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P3P1_emocion_3 %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        <b>2. ¿En general, qué tanto te gustó toda la Radionovela de Frankie? </b> 
+        <br>Contesta de una escala de 0 al 10, donde 0 es “No me gusto para nada” y 10 “Me gusto bastante”
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P3P2_radionovela %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>{{ formfield 'P3P3_papa' }}
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        <b>5. Del 0 al 10, ¿Qué tanto te identificas con la historia de Frankie?</b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P3P4_identifica %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>{{ formfield 'P3P5_celebracion' }}
+            <br>{{ formfield 'P3P6_pelusa' }}
+            <br>{{ formfield 'P3P7_amigo' }}
+            <br>{{ formfield 'P3P8_familiar' }}
+
+        </p>
+    </div>
+
+    
+{% next_button %}
+
+{{ endblock }}

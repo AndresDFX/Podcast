@@ -1,0 +1,109 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Parte D" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <p align ="justify">
+            En esta sección te pedimos que intentes predecir cómo se comportaría un/una bogotano/a promedio en las siguientes situaciones. 
+            <br>Por favor, responde honestamente; tus respuestas son completamente anónimas y confidenciales.
+        </p>
+        <br>
+        <p align = "justify" >
+            Piensa que seguimos en la situación anterior, en la que un/una joven <b>como tú</b> está administrando un puesto de comidas rápidas en tu barrio. 
+            <br>Cuando están limpiando <b>a punto de cerrar</b> el negocio, llega Luis, un joven de unos 21 años, hablando por teléfono, 
+            por su acento es <b>bogotano</b>, con un saco <b>manchado</b> de tierra y el pelo <b>sucio</b>. <br>Luís comenta que acaba de llegar de trabajar, 
+            tiene mucha <b>hambre</b>, y pide un perro caliente para comer.
+    </div>
+            
+    <div class="wrapper instructions">
+        <b>En una escala de 0 a 10, donde 0 es NADA PROBABLE y 10 MUY PROBABLE. </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th style="width: 20%; text-align: justify;">¿Qué tan probable crees que a Luis...? </th>
+                    <th style="width: 35%; text-align: justify;">¿Cuál crees que ha sido la respuesta más común a estas preguntas por parte de las otras personas que participan de nuestro estudio?</th>
+                </tr>
+                <tr>
+                    <td><br>Le preparen el perro caliente y le ofrezcan sentarse</td>
+                    <td style="text-align: center;">{% formfield player.D1_preparen_perro label="" %}</td>
+                    <td style="text-align: center;">{% formfield player.D5_exp_preparen_perro label="" %}</td>  
+                </tr>  
+                <tr>
+                    <td><br>Le pregunten si tiene el dinero para comprar el perro caliente</td>
+                    <td style="text-align: center;">{% formfield player.D2_pregunten_dinero label="" %}</td>
+                    <td style="text-align: center;">{% formfield player.D6_exp_pregunten_dinero label="" %}</td>  
+                </tr>  
+                <tr>
+                    <td><br> Sólo se lo vendan para llevar</td>
+                    <td style="text-align: center;">{% formfield player.D3_vendan_llevar label=" " %}</td>
+                    <td style="text-align: center;">{% formfield player.D7_exp_vendan_llevar label=" " %}</td>  
+                </tr>  
+                <tr>
+                    <td><br> Le den una excusa para no tener que preparar el perro</td>
+                    <td style="text-align: center;">{% formfield player.D4_excusa_no_preparar label=" " %}</td>
+                    <td style="text-align: center;">{% formfield player.D8_exp_excusa_no_preparar label=" " %}</td>  
+                </tr> 
+            </table>       
+        </p> 
+    </div>
+
+    <div class="wrapper instructions">
+        <b>En una escala similar, donde 0 es NADA PROBABLE y 10 MUY PROBABLE. </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th style="width: 20%; text-align: justify;">¿Que tán probable crees que que es que a Luís se le rechace el pedido del perro por…? </th>
+                    <th style="width: 35%; text-align: justify;"> ¿Cuál crees que ha sido la respuesta más común a estas preguntas?</th>
+                </tr>
+                <tr>
+                    <td>Cansancio de quien atiende</td>
+                    <td style="text-align: center;">{% formfield player.D9_rechazo_cansancio label=" " %}</td>
+                    <td style="text-align: center;">{% formfield player.D12_exp_rechazo_cansancio label=" " %}</td>  
+                </tr>  
+                <tr>
+                    <td>Dudas de que tenga con que pagar</td>
+                    <td style="text-align: center;">{% formfield player.D10_rechazo_dudas_pagos label=" " %}</td>
+                    <td style="text-align: center;">{% formfield player.D13_exp_rechazo_dudas_pagos label=" " %}</td>  
+                </tr>  
+                <tr>
+                    <td>Miedo a que les robe</td>
+                    <td style="text-align: center;">{% formfield player.D11_rechazo_miedo label=" " %}</td>
+                    <td style="text-align: center;">{% formfield player.D14_exp_rechazo_miedo label=" " %}</td>  
+                </tr>   
+            </table>   
+        </p> 
+    </div>
+
+
+    {% next_button %}
+
+{{ endblock }}
+
+            
+            
+            
+            

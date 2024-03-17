@@ -1,0 +1,99 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Preguntas 1" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <b>1. ¿Cuál carita expresa mejor tu opinión sobre los 5 episodios que acabas de escuchar? </b>
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128545;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128557;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128580;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128578;</span></td></th>
+                    <th><span class="icocor1" style="font-size: 36px;">&#128513;</span></td></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P1P1_emocion_1 %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </p>
+    </div>
+
+    <div class="wrapper instructions">
+        <p align = "justify" >
+                            
+            {{ formfield 'P1P2_ciudad' }}
+            {{ formfield 'P1P3_mama' }}
+            {{ formfield 'P1P4_preocupados' }}
+        </p>
+    </div>
+    
+
+    <div class="wrapper instructions">
+        <b>5. ¿Qué tanto te gustaron los cinco episodios?, </b>
+        <br>Contesta en una escala de 0 al 10, donde 0 es “No me gustaron para nada” y 10 “Me gustaron bastante” 
+        <p align = "justify" >
+            <table class="table">
+                <tr>
+                    <th> </th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    {% for choice in form.P1P5_gusto %}
+                        <td>{% choice %}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <br>
+        </p>
+    </div>
+    <div class="wrapper instructions">
+        <p align = "justify" >
+                            
+            {{ formfield 'P1P6_personajes' }}
+            {{ formfield 'P1P7_amigos' }}
+        </p>
+    </div>
+
+
+{% next_button %}
+
+{{ endblock }}

@@ -1,0 +1,93 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Consentimiento Informado" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+    <div class="wrapper instructions">
+        <p align = "justify" >
+            <em>¡Hola!<br><br>
+            <b>¡Gracias por participar!</b><br><br></em>
+            Vas a participar de un estudio que estamos realizando con el Banco Mundial pensado para personas como tú. 
+            <em><bm>Tu opinión es clave para comprender mejor la realidad de los jóvenes venezolanos que hoy viven en Colombia.</bm></em>
+            <br>
+            <br>Te iremos presentando unos retos sencillos y divertidos. Por cada reto en el que participes,
+            recibirás boletas para participar en varias rifas que haremos de tarjetas de regalo por un valor de $500,000.
+            <br>
+            <br>
+            <span class="icocor1" style="font-size: 36px;">&#129300;</span>
+            <b>¿En qué consisten los retos?</b><br>
+            Te enviaremos cinco retos. El primero y los dos últimos son unas encuestas que te tomarán 10 minutos. 
+            Los demás consisten en escuchar los episodios de nuestro podcast “Volver a Empezar” y responder máximo cinco preguntas. 
+            No te vas a aburrir.
+            <br>
+
+            <span class="icocor3" style="font-size: 40px;">&#129488;</span>
+            <b>¿Cuándo debo hacer los retos</b><br>
+            El primero será HOY; luego vendrán otros tres semanales, y el último será dentro de dos meses. 
+            No te preocupes, tendrás seis días para completar cada reto y te enviaremos recordatorios para que no te pierdas la posibilidad de ganar.
+            <br>
+
+            <span class="icocor2" style="font-size: 40px;">&#129321;</span>              
+            <b>¿En qué consisten los sorteos?</b><br>
+            Entregaremos dos tarjetas de regalo por $500,000 en cada sorteo. 
+            Deberás haber completado el reto para poder participar. 
+            Los sorteos se realizarán virtualmente al día siguiente del cierre del reto; 
+            enviaremos recordatorios en nuestras redes sociales y recibirás invitación para asistir a ellos.
+            <br>
+
+            <span class="icocor2" style="font-size: 40px;">&#127941;</span>              
+            <b>Entrega del premio</b><br>
+            Las personas ganadoras de cada sorteo recibirán la tarjeta de regalo. 
+            La entrega del premio se realizará dentro de los primeros 5 días hábiles.
+            <br>
+ 
+            <span class="icocor4" style="font-size: 40px;">&#128274;</span>
+            <b>Protegemos tu información:</b>
+            <br>Tu participación es <b>voluntaria y anónima</b>. 
+            Las encuestas son totalmente anónimas y no nos permiten identificarte a tí como individuo. 
+            Así mismo, puedes retirarte en cualquier momento.
+            Además, protegeremos tus respuestas de acuerdo con la Ley Estatutaria 1581 de 2012 de Protección de Datos.<br>
+            <br>
+            <span class="icocor5" style="font-size: 36px;">&#129335;</span>
+            <b>No dudes en preguntar:</b>
+            <br>Tu participación es <b>voluntaria y anónima</b>. 
+            Si tienes preguntas o quieres conocer los resultados del proyecto, puede escribirnos al correo electrónico: 
+            <a href="volveraempezarradio@gmail.com">volveraempezarradio@gmail.com</a> 
+            o llamarnos al  3154489433
+            <br>                  
+            <br>
+        </p>
+              
+        <p align = "center" >Hoy, ¿Manifiestas que conoces las características del estudio, 
+            estás de acuerdo con la información que te hemos brindado y en participar del estudio?
+            <div class="button-container" style="text-align: center;">
+                <button name="accepts_terms" value="True">Sí</button>
+                <button type="button" name="accepts_terms" onclick="location.href='https://google.com';" value="False">No</button>
+            </div>
+        </p>
+  
+    </div>
+  
+  {% endblock %}
+  
