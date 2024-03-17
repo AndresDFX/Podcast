@@ -11,6 +11,7 @@ class Constants(BaseConstants):
     name_in_url = 'EncuestaFinal_T1'
     players_per_group = None
     max_number_random = 6500
+    min_number_random = 1
 
     num_rounds = 1
 
@@ -180,9 +181,9 @@ class Page7_Final(Page):
         if 'numeros_usados' not in self.session.vars:
             self.session.vars['numeros_usados'] = []
 
-        numero_aleatorio = randint(1, Constants.max_number_random)
+        numero_aleatorio = randint(Constants.min_number_random, Constants.max_number_random)
         while numero_aleatorio in self.session.vars['numeros_usados']:
-            numero_aleatorio = randint(1, Constants.max_number_random)
+            numero_aleatorio = randint(Constants.min_number_random, Constants.max_number_random)
 
         self.session.vars['numeros_usados'].append(numero_aleatorio)
         self.numero_aleatorio = numero_aleatorio

@@ -1,5 +1,4 @@
 import json
-from random import randint, random
 from otree.api import Page
 from .models import Constants
 

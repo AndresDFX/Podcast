@@ -7,6 +7,7 @@ class Constants(BaseConstants):
     name_in_url = 'Episodios_T1'
     players_per_group = None
     max_number_random = 6500
+    min_number_random = 1
     extension_sounds = "mp3"
     names_chapters = [
         "Frankie llega al colegio",
@@ -339,7 +340,7 @@ class Player(BasePlayer):
 
 
     def generar_numero_aleatorio(self):
-        numero_aleatorio = randint(1000, Constants.max_number_random)
+        numero_aleatorio = randint(Constants.min_number_random, Constants.max_number_random)
 
         # Reiniciar la lista de números usados después del capítulo 10
         if self.round_number > 10:
