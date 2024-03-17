@@ -25,7 +25,9 @@
         <a href="#" id="downloadBtn" class="btn btn-primary">Descargar Boleto</a>
     </div>
 </div>
-{% next_button %}
+{% block next_button %}
+    <button type="submit" class="otree-btn-next btn btn-primary">{% trans "Cerrar" %}</button>
+{% endblock %}
 {% endblock %}
 
 {% block scripts %}

@@ -314,5 +314,3 @@ class Page7_Final(Page):
 
 
 page_sequence = [Consentimiento, Inicio, Page1_ParteA, Page2_ParteB, Page3_ParteC, Page4_ParteD, Page5_ParteE, Page6_ParteF, Page7_Final]
-
-page_sequence = [Page4_ParteD]
