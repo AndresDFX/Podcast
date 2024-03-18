@@ -9,10 +9,6 @@
     {% endif %}
 {% endblock %}
 
-{% block styles %}
-    <link href="{% static 'custom.css' %}" rel="stylesheet" />
-{% endblock %}
-
 {% block content %}
     <div class="wrapper instructions">
         {% if mostrar_capitulos %}
@@ -136,16 +132,20 @@
         prepararEnlaceDescarga(numero);
     }
 
-    function prepararEnlaceDescarga(numeroAleatorio) {
-        var enlaceDescarga = document.getElementById('enlaceDescarga');
-        enlaceDescarga.addEventListener('click', function(event) {
+function prepararEnlaceDescarga(numeroAleatorio) {
+    var downloadBtn = document.getElementById('downloadBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(event) {
             event.preventDefault();
             descargarImagen(numeroAleatorio);
         });
+    } else {
+        console.error('El botón de descarga no existe en el DOM.');
     }
+}
 
     function descargarImagen(numeroAleatorio) {
-        var ticketImage = document.getElementById('ticketImageModal'); // Asegúrate de que este ID corresponda al de tu imagen en el modal
+        var ticketImage = document.getElementById('ticketImage'); // Asegúrate de que este ID corresponda al de tu imagen en el modal
         var canvas = document.createElement('canvas');
         canvas.width = ticketImage.naturalWidth;
         canvas.height = ticketImage.naturalHeight;
