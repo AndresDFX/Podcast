@@ -40,71 +40,35 @@
         </p>
     </div>
 
-    <div class="wrapper instructions">
-        <p align = "justify" >
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Miembros de los siguientes grupos</th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th>Nivel de Confianza</th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                    </tr>
-                </thead>
-            </table>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> Confias Menos </th>
-                        <th> </th>
-                        <th><span class="icocor1" style="font-size: 36px;">&#129490;</span></td></th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th> </th>
-                        <th>Confias Más </th>
-                    </tr>
-                </thead>
-            </table>
-            <table class="table">
-                <tr>
-                    <th> </th>
-                    <th>-5</th>
-                    <th>-4</th>
-                    <th>-3</th>
-                    <th>-2</th>
-                    <th>-1</th>
-                    <th> 0 </th>
-                    <th>+1</th>
-                    <th>+2</th>
-                    <th>+3</th>
-                    <th>+4</th>
-                    <th>+5</th>
-                </tr>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th rowspan="4">Miembros de los siguientes grupos</th>
+                <th colspan="5" class="confianza-header">Confianza Menos</th>
+                <th class="confianza-header">Confianza</th>
+                <th colspan="5" class="confianza-header">Confianza Más</th>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+                <td class="icon-cell"><span class="icocor1">&#129490;</span></td>
+                <td colspan="5"></td>
+            </tr>
+            <tr class="number-row">
+                <td class="number-cell">-5</td>
+                <td class="number-cell">-4</td>
+                <td class="number-cell">-3</td>
+                <td class="number-cell">-2</td>
+                <td class="number-cell">-1</td>
+                <td class="number-cell">0</td>
+                <td class="number-cell">+1</td>
+                <td class="number-cell">+2</td>
+                <td class="number-cell">+3</td>
+                <td class="number-cell">+4</td>
+                <td class="number-cell">+5</td>
+            </tr>
+        </thead>
+        <tbody>
                 <tr>
                     <td>Tu familia</td>
                     {% for choice in form.EF_c1_familia %}
@@ -171,8 +135,9 @@
                         <td>{% choice %}</td>
                     {% endfor %}
                 </tr>
-            </table>
-            <br>
+         </tbody>
+        </table>
+        <br>
         </p>
     </div>
 

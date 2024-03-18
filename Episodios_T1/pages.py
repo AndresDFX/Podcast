@@ -15,7 +15,16 @@ class TiemposReproduccion(Page):
 
         capitulos_y_rutas = list(zip(nombres_capitulos_anteriores, rutas_audios[:-1]))
 
+        titulo_modal = ""
+        if self.round_number >=1 and self.round_number <= 5:
+            titulo_modal = "Primer sorteo"
+        elif self.round_number >=6 and self.round_number <=10:
+            titulo_modal = "Segundo sorteo"
+        else:
+            titulo_modal = "Tercer sorteo"
+
         return {
+            'titulo_modal':titulo_modal,
             'num_pagina': self.round_number,
             'ruta_ultimo_audio': rutas_audios[-1] if self.round_number <= max_capitulos_disponibles else None,
             'capitulos_y_rutas': capitulos_y_rutas,
@@ -62,19 +71,23 @@ class ResultadosParciales2(Page):
             'todos_los_numeros': todos_los_numeros,
             'tiempos_reproduccion': tiempos_reproduccion,
         }
-    
 
 
 class ResultadosFinales(Page):
     def is_displayed(self):
-        return self.round_number == (Constants.num_rounds)
+        return self.round_number == Constants.num_rounds
 
     def vars_for_template(self):
-        numeros_aleatorios = [p.numero_aleatorio for p in self.player.in_all_rounds() if p.numero_aleatorio is not None]
+        # Filtra para incluir solo los números aleatorios desde la ronda 11 hasta la ronda actual
+        numeros_aleatorios = [p.numero_aleatorio for p in self.player.in_all_rounds()
+                              if p.numero_aleatorio is not None and p.round_number >= 11]
+
         return {
+
             'numeros_aleatorios': numeros_aleatorios,
             'num_pagina': self.round_number
         }
+
 
 class Inicio(Page):
     def is_displayed(self):

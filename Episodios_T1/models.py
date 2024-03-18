@@ -6,7 +6,7 @@ from otree.api import models, BaseConstants, BaseSubsession, BaseGroup, BasePlay
 class Constants(BaseConstants):
     name_in_url = 'Episodios_T1'
     players_per_group = None
-    max_number_random = 6500
+    max_number_random = 11
     min_number_random = 1
     extension_sounds = "mp3"
     names_chapters = [
@@ -35,30 +35,33 @@ class Subsession(BaseSubsession):
         if 'numeros_usados' not in self.session.vars:
             self.session.vars['numeros_usados'] = []
 
-#        # Fecha de inicio experimento
-        fecha_inicio = datetime(2024, 2, 15) # Año, mes, día
+        # Fecha de inicio experimento
+        fecha_inicio = datetime(2024, 2, 15)  # Año, mes, día
 
         # Obtener la fecha actual
         hoy = datetime.now()
 
         # Calcula los jueves pasados desde la fecha de inicio
         diferencia = (hoy - fecha_inicio).days
-        jueves_pasados = 0
-        for i in range(diferencia + 1):
-            dia_actual = fecha_inicio + timedelta(days=i)
-            if dia_actual.weekday() == 3:  # Jueves
-                jueves_pasados += 1
+        jueves_pasados = sum(1 for i in range(diferencia + 1) if (fecha_inicio + timedelta(days=i)).weekday() == 3)
 
         # Los primeros tres capítulos siempre están disponibles
-        max_capitulos_disponibles = 15   #Cambiar a 5, para que cada jueves solo muestre de a 5.
+        max_capitulos_disponibles = 15  # Cambiar a 5, para que cada jueves solo muestre de a 5.
 
         # Calcular cuántos capítulos deben estar disponibles
         if jueves_pasados > 0:
-            cap_adicionales = 5 * (jueves_pasados - 1)  # -1 porque los primeros 5 ya están disponibles
-
-        # Ajustar si el total excede el número de capítulos
+            # -1 porque los primeros 5 ya están disponibles
+            cap_adicionales = 5 * (jueves_pasados - 1)
+            # Ajustar si el total excede el número de capítulos
             max_capitulos_disponibles += min(cap_adicionales, Constants.num_rounds - max_capitulos_disponibles)
+
+        # Reinicia el conteo de boletas después del capítulo 10
+        if self.round_number > 10:
+            self.session.vars['numeros_usados'] = []
+
+        # Actualizar la variable de sesión con el máximo de capítulos disponibles
         self.session.vars['max_capitulos_disponibles'] = max_capitulos_disponibles
+
 
 class Group(BaseGroup):
     pass

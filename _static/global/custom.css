@@ -55,49 +55,84 @@ body {
     padding: 0.5em; /* Responsive padding for radio buttons */
 }
 
-/* Responsive Design for Small Screens */
+/* Responsive adjustments */
 @media (max-width: 767px) {
-    .wrapper,
-    .instructions {
-        width: 95%; /* Slightly narrower on smaller screens */
+    .wrapper, .instructions {
+        width: 95%;
     }
 
     .icon-cell {
-        font-size: 36px; /* Smaller icon size on smaller screens */
+        font-size: 36px;
     }
 }
 
 @media (max-width: 480px) {
-    .wrapper,
-    .instructions {
-        width: 100%; /* Full width on very small screens */
+    .wrapper, .instructions {
+        width: 100%;
     }
 
     .table th, .table td {
-        font-size: 12px; /* Smaller font size in tables to prevent text overlap */
+        font-size: 12px;
     }
 }
 
-/* Button Styles */
-.otree-btn-next {
-    margin: 20px auto;
-    display: block;
+/* Modal specific styles */
+#modalNumeroAleatorio > div {
+    position: fixed;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: auto;
+    max-width: 60%; /* Larger max-width for larger screens */
+    text-align: center;
+    background-color: white;
+    border-radius: 15px;
 }
 
-.btn-primary, .btn-success[disabled] {
-    margin-bottom: 10px;
+#modalNumeroAleatorio img {
+    max-width: 100%;
+}
+
+#numeroAleatorio {
+    right: 5%;
+    top: 5%;
+    transform: none; /* Override transform for proper positioning */
+    font-size: 24px; /* Larger font size for better visibility */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    #modalNumeroAleatorio > div {
+        max-width: 80%; /* Smaller max-width for smaller screens */
+    }
+
+    #numeroAleatorio {
+        font-size: 18px; /* Smaller font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    #modalNumeroAleatorio > div {
+        max-width: 95%; /* Even smaller max-width for very small screens */
+    }
+
+    #numeroAleatorio {
+        font-size: 16px; /* Even smaller font size for very small screens */
+    }
+}
+.otree-btn-next, .btn-primary, .btn-success[disabled] {
+    margin: 20px auto;
+    display: block;
     opacity: 1;
 }
 
-/* Progress Bar Style */
 .progress {
-    height: 20px; /* Taller progress bars for visibility */
-    margin-bottom: 20px; /* Space below progress bars */
-    background-color: rgba(43, 102, 154, 0.2); /* Light blue background color */
-    background-image: linear-gradient(to bottom, rgba(43, 102, 154, 0.1) 0, rgba(43, 102, 154, 0.6) 100%);
+    height: 20px;
+    margin-bottom: 20px;
 }
 
-/* Error Message Style */
 .otree-form-errors:after {
     visibility: visible;
     content: "Please answer the question";

@@ -64,18 +64,19 @@
     {% endif %}
 
 
-    <div id="modalNumeroAleatorio" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
-        <div style="position: relative; margin: 10% auto; padding: 20px; width: 50%; text-align: center; background-color: white; border-radius: 15px;">
-            <h2 style="font-weight: bold;">¡Muchas gracias por escucharnos!</h2>
-            <p>Por escuchar este capítulo, has ganado el siguiente boleto de lotería:</p>
-            <div style="position: relative; display: inline-block;">
-                <img id="ticketImage" src="{% static 'images/Segundo_Sorteo.png' %}" alt="Golden Ticket" style="width: 100%; margin-top: 20px;">
-                <span id="numeroAleatorio" style="position: absolute; left: 75%; top: 18%; transform: translate(-50%, -50%); font-size: 2em; color: white;"></span>
-            </div>
-            <a href="#" id="downloadBtn" style="margin-top: 20px;">Descargar Boleta</a>
-            <button id="botonAceptarModal" onclick="manejarAceptar()" style="margin-top: 20px; display: inline-block; width: auto; padding: 10px 20px; font-size: 1em;">Aceptar</button>
+<div id="modalNumeroAleatorio" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
+    <div style="position: relative; margin: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; width: auto; max-width: 80%; text-align: center; background-color: white; border-radius: 15px;">
+        <h2 style="font-weight: bold;">{{titulo_modal}} ¡Muchas gracias por escucharnos!</h2>
+        <p>Por escuchar este capítulo, has ganado el siguiente boleto de lotería:</p>
+        <div style="position: relative; display: inline-block; width: 100%; max-width: 400px;">
+            <img id="ticketImage" src="{% static 'images/Segundo_Sorteo.png' %}" alt="Golden Ticket" style="width: 100%; margin-top: 20px;">
+            <span id="numeroAleatorio" style="position: absolute; right: 25%; top: 15%; font-size: 1em; color: white;"></span>
         </div>
+        <a href="#" id="downloadBtn" style="margin-top: 20px;">Descargar Boleta</a>
+        <button id="botonAceptarModal" onclick="cerrarModal()" style="margin-top: 20px; display: inline-block; width: auto; padding: 10px 20px; font-size: 1em;">Aceptar</button>
     </div>
+</div>
+
 
 {% endblock %}
 
