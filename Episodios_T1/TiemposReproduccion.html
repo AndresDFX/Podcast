@@ -69,7 +69,9 @@
         <h2 style="font-weight: bold;">{{titulo_modal}} ¡Muchas gracias por escucharnos!</h2>
         <p>Por escuchar este capítulo, has ganado el siguiente boleto de lotería:</p>
         <div style="position: relative; display: inline-block; width: 100%; max-width: 400px;">
-            <img id="ticketImage" src="{% static 'images/Segundo_Sorteo.png' %}" alt="Golden Ticket" style="width: 100%; margin-top: 20px;">
+            <!-- Usando solo una clase para las imágenes y ajustando el src con una variable -->
+            <img class="ticketImage" src="{% if player.round_number >= 11 %}{% static 'images/Segundo_Sorteo.png' %}{% else %}{% static 'images/Tercer_Sorteo.png' %}{% endif %}" alt="Golden Ticket" style="width: 100%; margin-top: 20px;">
+
             <span id="numeroAleatorio" style="position: absolute; right: 25%; top: 15%; font-size: 1em; color: white;"></span>
         </div>
         <a href="#" id="downloadBtn" style="margin-top: 20px;">Descargar Boleta</a>
@@ -133,20 +135,20 @@
         prepararEnlaceDescarga(numero);
     }
 
-function prepararEnlaceDescarga(numeroAleatorio) {
-    var downloadBtn = document.getElementById('downloadBtn');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            descargarImagen(numeroAleatorio);
-        });
-    } else {
-        console.error('El botón de descarga no existe en el DOM.');
+    function prepararEnlaceDescarga(numeroAleatorio) {
+        var downloadBtn = document.getElementById('downloadBtn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                descargarImagen(numeroAleatorio);
+            });
+        } else {
+            console.error('El botón de descarga no existe en el DOM.');
+        }
     }
-}
 
     function descargarImagen(numeroAleatorio) {
-        var ticketImage = document.getElementById('ticketImage'); // Asegúrate de que este ID corresponda al de tu imagen en el modal
+        var ticketImage = document.querySelector('.ticketImage'); // Asegúrate de que este ID corresponda al de tu imagen en el modal
         var canvas = document.createElement('canvas');
         canvas.width = ticketImage.naturalWidth;
         canvas.height = ticketImage.naturalHeight;
