@@ -196,4 +196,4 @@ class Page7_Final(Page):
 
 
 
-page_sequence = [Inicio, Page2_ParteB, Page3_ParteC, Page6_ParteF, Page7_Final ]
+page_sequence = [Inicio, Page2_ParteB, Page3_ParteC, Page6_ParteF, Page7_Final]

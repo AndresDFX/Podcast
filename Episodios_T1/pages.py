@@ -82,8 +82,12 @@ class ResultadosFinales(Page):
         numeros_aleatorios = [p.numero_aleatorio for p in self.player.in_all_rounds()
                               if p.numero_aleatorio is not None and p.round_number >= 11]
 
-        return {
+        # Verifica si el jugador tiene un número aleatorio generado en las preguntas de la ronda 3
+        numero_aleatorio_respuestas_p3 = self.player.field_maybe_none('numero_aleatorio_preguntas3')
+        if numero_aleatorio_respuestas_p3 is not None:
+            numeros_aleatorios.append(numero_aleatorio_respuestas_p3)
 
+        return {
             'numeros_aleatorios': numeros_aleatorios,
             'num_pagina': self.round_number
         }
@@ -123,6 +127,20 @@ class Preguntas3(Page):
     form_model = 'player'
     form_fields = ['P3P1_emocion_3', 'P3P2_radionovela', 'P3P3_papa', 'P3P4_identifica', 'P3P5_celebracion', 'P3P6_pelusa', 'P3P7_amigo', 'P3P8_familiar']
 
+    def before_next_page(self):
+        respuestas_correctas = {
+            'P3P3_papa': '3',
+            'P3P5_celebracion': '3',
+            'P3P6_pelusa': '3',
+            'P3P7_amigo': '3',
+            'P3P8_familiar': '3',
+        }
+        todas_correctas = all(
+            getattr(self.player, pregunta) == respuesta
+            for pregunta, respuesta in respuestas_correctas.items()
+        )
+        if todas_correctas:
+            self.player.numero_aleatorio_preguntas3 = self.player.generar_numero_aleatorio()
 
 class x_EF_Page2_ParteB(Page):
     def is_displayed(self):
@@ -158,4 +176,4 @@ page_sequence = [Inicio, TiemposReproduccion, Preguntas1, Preguntas2,
                 ResultadosParciales1, ResultadosParciales2, Preguntas3, x_EF_Page2_ParteB, 
                 x_EF_Page3_ParteC, x_EF_Page6_ParteF, ResultadosFinales]
 
-
+page_sequence = [ Preguntas3, ResultadosFinales]

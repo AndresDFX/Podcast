@@ -69,6 +69,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     tiempos_reproduccion_json = models.LongStringField(blank=True)
     numero_aleatorio = models.IntegerField(initial=0)
+    numero_aleatorio_preguntas3 = models.IntegerField()
 
     #### VARIABLES POSTAUDIO1
     numeros_aleatorios_p1 = models.StringField()
@@ -239,6 +240,16 @@ class Player(BasePlayer):
         ],
         widget = widgets.RadioSelect
     )
+
+
+
+    def verificar_respuestas_correctas(self, respuestas_correctas):
+        # Verificar cada respuesta con su respuesta correcta en el diccionario
+        breakpoint()
+        for pregunta, correcta in respuestas_correctas.items():
+            if getattr(self, pregunta) != correcta:
+                return False
+        return True
 
     # *** Variables Cuestionario
     # ******************************************************************************************************************** #    

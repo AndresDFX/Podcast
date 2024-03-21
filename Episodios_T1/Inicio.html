@@ -10,6 +10,25 @@
     {% trans "Inicio" %}
 {% endblock %}
 
+{# *** STYLES *** #}
+{% block styles %}
+{{ super() }}
+<style>
+    .table.particular {
+        border: 1px solid #ddd; /* Adds borders to all tables with the 'particular' class */
+    }
+
+    .table.particular th,
+    .table.particular td {
+        border: 1px solid #ddd; /* Adds borders to individual cells */
+    }
+
+    /* Optional: Adjust the .wrapper class specifically for this page if needed */
+    .wrapper.particular {
+        max-width: 1000px; /* Ajusta el ancho máximo del wrapper para esta página en particular */
+    }
+</style>
+{% endblock %}
 
 {# ****************************************************************************************************************** #}
 {# *** CONTENT *** #}
@@ -37,7 +56,7 @@
         <br><b>¡No te pierdas ni uno!</b> 
         <br>
         <br>
-        <table class="horizontal-borders" border="1" align="center">
+        <table class="table particular" border="1" align="center">
             <tr>
                 <th style="width: 30%;">Fechas</th>
                 <th style="width: 30%;">Episodios disponibles</th>
